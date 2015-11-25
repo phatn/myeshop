@@ -1,0 +1,5 @@
+eclipse.preferences.version=1
+encoding//src/main/resources/messages.properties=UTF-8
+encoding//src/main/resources/messages_vn.properties=UTF-8
+encoding//src/main/webapp/WEB-INF/tiles/template/client/topBar.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/client/home.jsp=UTF-8
