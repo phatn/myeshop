@@ -16,7 +16,11 @@ import javax.persistence.TableGenerator;
  * 
  */
 
-@Entity
+public enum OrderStatus {
+	NEW, PENDING, CANCELLED, SHIPPING, SHIPPED, DELIVERED
+}
+
+/*@Entity
 @Table(name = "ES_ORDER_STATUS")
 public class OrderStatus implements Serializable {
 	
@@ -47,3 +51,4 @@ public class OrderStatus implements Serializable {
 		this.name = name;
 	}
 }
+*/

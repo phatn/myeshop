@@ -3,8 +3,12 @@ package com.myeshop.domain;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -33,11 +37,14 @@ public class Order implements Serializable {
 	@GeneratedValue(strategy = GenerationType.TABLE, generator="TABLE_GENERATOR")
 	private Long id;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "order")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "order", cascade = CascadeType.ALL)
 	private Set<OrderLine> orderLines = new HashSet<OrderLine>();
 
-	@ManyToOne
-	@JoinColumn(name = "ORDER_STATUS_ID")
+	/*@ManyToOne
+	@JoinColumn(name = "ORDER_STATUS_ID")*/
+	
+	@Column(name = "ORDER_STATUS")
+	@Enumerated(value = EnumType.STRING)
 	private OrderStatus orderStatus;
 	
 	@ManyToOne

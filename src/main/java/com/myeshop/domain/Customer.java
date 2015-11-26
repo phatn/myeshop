@@ -22,6 +22,7 @@ import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 /**
  *  
@@ -195,5 +196,10 @@ public class Customer implements Serializable {
 
 	public void setEnable(boolean enable) {
 		this.enable = enable;
+	}
+	
+	@Transient
+	public String getFullName() {
+		return firstName + " " + lastName;
 	}
 }

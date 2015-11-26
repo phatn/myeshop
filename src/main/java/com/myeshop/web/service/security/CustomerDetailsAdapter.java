@@ -71,4 +71,8 @@ public class CustomerDetailsAdapter implements UserDetails {
 	public String getEmail() {
 		return customer.getEmailAddress();
 	}
+	
+	public Customer getCustomer() {
+		return customer;
+	}
 }

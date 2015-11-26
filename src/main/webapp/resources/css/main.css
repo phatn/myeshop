@@ -519,3 +519,10 @@ img.deleteCartItem {
 	color: #0072bc;
 	padding-left: 60px;
 }
+
+.checkoutStep {
+	padding-top: 10px;
+	margin-left: 150px;
+	font-size: 20px;
+	font-weight: bold;
+}

@@ -29,7 +29,8 @@
 		<validation-api.version>1.1.0.Final</validation-api.version>
 		<hibernate-validator.version>5.2.1.Final</hibernate-validator.version>
 		<jetty-maven-plugin.version>8.1.1.v20120215</jetty-maven-plugin.version>
-		<ehcache.version>2.10.0</ehcache.version>		
+		<ehcache.version>2.10.0</ehcache.version>	
+		<javax.el-api.version>2.2.4</javax.el-api.version>	
 	</properties>
 	
 	<dependencies>
@@ -107,7 +108,7 @@
 		<dependency>
 		   <groupId>javax.el</groupId>
 		   <artifactId>javax.el-api</artifactId>
-		   <version>2.2.4</version>
+		   <version>${javax.el-api.version}</version>
 		</dependency>
 		
 		<!-- Javax inject -->

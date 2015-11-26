@@ -29,7 +29,6 @@ import com.myeshop.domain.Role;
 import com.myeshop.service.CustomerService;
 import com.myeshop.service.RoleService;
 import com.myeshop.web.contants.RoleConstant;
-import com.myeshop.web.entity.Cart;
 import com.myeshop.web.entity.CustomerForm;
 import com.myeshop.web.validator.CustomerValidator;
 
@@ -61,15 +60,6 @@ public class CustomerController {
 	@InitBinder
 	public void initializeBinder(WebDataBinder binder) {
 		binder.setValidator(customerValidator);
-	}
-	
-	@RequestMapping(value = "/checkout", method = RequestMethod.POST)
-	public String checkout(HttpSession session) {
-		Cart cart = (Cart)session.getAttribute("cart");
-		if(cart != null) {
-			
-		}
-		return "forward:/order/create";
 	}
 	
 	/*
@@ -108,6 +98,12 @@ public class CustomerController {
 		Authentication authenticationResult = authenticationManager.authenticate(authenticationRequest);
 		SecurityContextHolder.getContext().setAuthentication(authenticationResult);
 		return	"redirect:/";
+	}
+	
+	@RequestMapping(value = "/checkout/step1", method = RequestMethod.GET)
+	public String checkOutStep1(HttpSession session) {
+		//Order order = (Order)session.getAttribute("order");
+		return "step1";
 	}
 	
 	/*

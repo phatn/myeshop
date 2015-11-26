@@ -10,10 +10,10 @@
 		<meta charset="utf-8">
 		<link rel="shortcut icon" href="<c:url value="/resources/images/favicon.ico" />" />
 		<link href="<c:url value ="/resources/css/main.css" />" rel="stylesheet" type="text/css">
-		<%-- <link href="<c:url value ="/resources/css/bootstrap.min.css" />" rel="stylesheet" type="text/css">
-		<link href="<c:url value ="/resources/css/bootstrap-theme.min.css" />" rel="stylesheet" type="text/css"> --%>
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+		<link href="<c:url value ="/resources/css/bootstrap.min.css" />" rel="stylesheet" type="text/css">
+		<link href="<c:url value ="/resources/css/bootstrap-theme.min.css" />" rel="stylesheet" type="text/css">
+		<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"> -->
 		<title><tiles:insertAttribute name="title" /></title>
 	</head>
 	<body>
@@ -41,9 +41,9 @@
 				<tiles:insertAttribute name="footer" />
 			</div>
 		</div>
-		<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-		<%-- <script src="<c:url value ="/resources/js/jquery-1.11.3.js" />" ></script>
-		<script src="<c:url value ="/resources/js/bootstrap.min.js" />" ></script> --%>
+		<!-- <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script> -->
+		<script src="<c:url value ="/resources/js/jquery-1.11.3.js" />" ></script>
+		<script src="<c:url value ="/resources/js/bootstrap.min.js" />" ></script>
 	</body>
 </html>

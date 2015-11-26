@@ -58,6 +58,15 @@
 		<put-attribute name="mainContent" value="/WEB-INF/views/client/checkout.jsp" />
 	</definition>
 
+	<definition name="step1" extends="mainLayout">
+		<put-attribute name="title" value="MyEshop - Checkout Step1" />
+		<put-attribute name="topBar" value="" />
+		<put-attribute name="header" value="" />
+		<put-attribute name="topLeftBanner" value="" />
+		<put-attribute name="topRightBanner" value="" />
+		<put-attribute name="mainContent" value="/WEB-INF/views/client/checkoutStep1.jsp" />
+	</definition>
+
 	<definition name="admin" extends="mainLayout">
 		<put-attribute name="title" value="MyEshop - Admin" />
 		<put-attribute name="topBar" value="" />

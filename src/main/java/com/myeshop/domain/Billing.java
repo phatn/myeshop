@@ -1,5 +1,7 @@
 package com.myeshop.domain;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.FetchType;
@@ -13,8 +15,10 @@ import javax.persistence.ManyToOne;
  */
 
 @Embeddable
-public class Billing {
+public class Billing implements Serializable {
 	
+	private static final long serialVersionUID = -1800664183680083149L;
+
 	@Column(name = "BILLING_FIRST_NAME")
 	private String firstName;
 	

@@ -1,5 +1,6 @@
 package com.myeshop.web.entity;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 import com.myeshop.domain.Product;
@@ -10,8 +11,10 @@ import com.myeshop.domain.Product;
  * 
  */
 
-public class CartItem {
+public class CartItem implements Serializable {
 	
+	private static final long serialVersionUID = -5187698497860524019L;
+
 	private int quantity;
 	
 	private Product product;
