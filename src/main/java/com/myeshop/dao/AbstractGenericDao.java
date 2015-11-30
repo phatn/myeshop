@@ -88,7 +88,7 @@ public abstract class AbstractGenericDao<T> implements GenericDao<T> {
 	
 	@Override
 	public void update(T t) {
-		if(entityManager.contains(t)) {
+		//if(entityManager.contains(t)) {
 			Method method = ReflectionUtils.findMethod(getDomainClass(), "setDateModified",
 					new Class[] {Date.class});
 			if(method != null) {
@@ -97,7 +97,7 @@ public abstract class AbstractGenericDao<T> implements GenericDao<T> {
 				} catch(Exception e) {}
 			}
 			entityManager.merge(t);
-		}
+		//}
 	}
 	
 	@Override

@@ -527,11 +527,11 @@ img.deleteCartItem {
 	font-weight: bold;
 }
 
-table.deliveryInfo td:first-child {
-	width: 30% !important;
+table.reviewOrder td:first-child {
+	width: 20% !important;
 }
-table.deliveryInfo td:not(:first-child) {
-	width: 70% !important;
+table.reviewOrder td:not(:first-child) {
+	width: 80% !important;
 }
 
 button.btn_paypal {

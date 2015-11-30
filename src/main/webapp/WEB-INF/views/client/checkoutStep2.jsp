@@ -8,11 +8,11 @@
 	<div class="checkoutStep"><spring:message code="checkout.step1.label" /></div>
 </div>
 <div style="clear: both; height: 30px;"></div>
-<div class="checkoutStep"><spring:message code="checkout.step2.reviewOrder" /></div>
+<h1>Review Order</h1>
 <div>
-	<h1>Customer information</h1>
+	<h2>Customer information</h2>
 	<form id="checkoutOrder" action="" method="post">
-	<table class="cartDetail">
+	<table class="cartDetail reviewOrder">
 		<tr>
 			<td>First Name</td>
 			<td>${order.customer.firstName}</td>
@@ -33,43 +33,38 @@
 	</table>
 </form>
 </div>
-<c:if test="${deliveryAddress == 'DELIVERY'}">
-<div style="clear: both; height: 30px;"></div>
-<div class="checkoutStep"><spring:message code="checkout.step2.reviewOrder" /></div>
-<div>
-	<h1>Delivery Address information</h1>
-	<form id="checkoutOrder" action="" method="post">
-		<table class="cartDetail">
-				<tr>
-					<td>First Name</td>
-					<td>${customer.delivery.firstName}</td>
-				</tr>
-				<tr>
-					<td>Last Name</td>
-					<td>${customer.delivery.LastName}</td>
-				</tr>
-				<tr>
-					<td>User Name</td>
-					<td>${customer.delivery.userName}</td>
-				</tr>
-				<tr>
-					<td>Address</td>
-					<td>${customer.delivery.address}</td>
-				</tr>
-				<tr>
-					<td>Phone</td>
-					<td>${customer.delivery.phone}</td>
-				</tr>
-			</table>
-	
-</form>
-</div>
+<c:if test="${DELIVERY_ADDRESS == 'delivery'}">
+	<div style="clear: both; height: 30px;"></div>
+	<div>
+		<h2>Delivery Address information</h2>
+		<form id="checkoutOrder" action="" method="post">
+			<table class="cartDetail reviewOrder">
+					<tr>
+						<td>First Name</td>
+						<td>${order.customer.delivery.firstName}</td>
+					</tr>
+					<tr>
+						<td>Last Name</td>
+						<td>${order.customer.delivery.lastName}</td>
+					</tr>
+					<tr>
+						<td>Address</td>
+						<td>${order.customer.delivery.address}</td>
+					</tr>
+					<tr>
+						<td>Phone</td>
+						<td>${order.customer.delivery.phone}</td>
+					</tr>
+				</table>
+		
+	</form>
+	</div>
 </c:if>
 <div>
 	<c:url var="submitPaypal" value="/checkout/paypal" />
 	<form action="${submitPaypal}" method="post">
-	<h1>Order details</h1>
-	<table class="cartDetail">
+	<h2>Order details</h2>
+	<table class="cartDetail" style="margin-bottom: 5px;">
 		<thead style="background-color: #443266; color: #fff">
 			<tr>
 				<th><spring:message code="nameProduct.label"/></th>

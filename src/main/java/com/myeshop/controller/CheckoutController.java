@@ -2,6 +2,7 @@ package com.myeshop.controller;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,11 +10,13 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
 import com.myeshop.domain.Customer;
 import com.myeshop.domain.Delivery;
 import com.myeshop.domain.Order;
 import com.myeshop.domain.OrderStatus;
 import com.myeshop.service.CustomerService;
+import com.myeshop.web.contants.Constant;
 import com.myeshop.web.entity.DeliveryForm;
 import com.myeshop.web.utils.UserUtils;
 
@@ -36,7 +39,7 @@ public class CheckoutController {
 	
 	@RequestMapping(value = "/step1/delivery", method = RequestMethod.POST)
 	public String checkOutStep2Delivery(@ModelAttribute("delivery") @Valid DeliveryForm	form, 
-			BindingResult result, Model model) {
+			BindingResult result, Model model, HttpSession session) {
 		
 		if(result.hasErrors()) {
 			return "step1";
@@ -44,13 +47,13 @@ public class CheckoutController {
 		Customer customer = UserUtils.getLoggedInCustomer();
 		customer.setDelivery(toDelivery(form));
 		customerService.update(customer);
-		model.addAttribute("deliveryAddress", CheckoutAddressType.DELIVERY.toString());
+		session.setAttribute(Constant.DELIVERY_ADDRESS, "delivery");
 		return "redirect:/checkout/step2";
 	}
 	
 	@RequestMapping(value = "/step1/billing", method = RequestMethod.POST)
-	public String checkOutStep2Billing(Model model) {
-		model.addAttribute("deliveryAddress", CheckoutAddressType.CUSTOMER.toString());
+	public String checkOutStep2Billing(Model model, HttpSession session) {
+		session.setAttribute(Constant.DELIVERY_ADDRESS, "customer");
 		return "redirect:/checkout/step2";
 	}
 	
@@ -65,6 +68,7 @@ public class CheckoutController {
 		order.setOrderStatus(OrderStatus.DELIVERED);
 		session.removeAttribute("order");
 		session.removeAttribute("scopedTarget.cart");
+		session.removeAttribute(Constant.DELIVERY_ADDRESS);
 		return "redirect:/checkout/orderSuccess";
 	}
 	
@@ -81,4 +85,5 @@ public class CheckoutController {
 		delivery.setPhone(form.getPhone());
 		return delivery;
 	}
+	
 }

@@ -14,4 +14,6 @@ public abstract class Constant {
 	
 	public static final int PRODUCTS_PER_PAGE = 4;
 	
+	public static final String DELIVERY_ADDRESS = "DELIVERY_ADDRESS";
+	
 }
