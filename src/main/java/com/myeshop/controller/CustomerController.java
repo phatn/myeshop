@@ -3,7 +3,6 @@ package com.myeshop.controller;
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Lazy;
@@ -20,11 +19,9 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
 import com.myeshop.domain.Billing;
 import com.myeshop.domain.Customer;
 import com.myeshop.domain.Gender;
-import com.myeshop.domain.Order;
 import com.myeshop.domain.Role;
 import com.myeshop.service.CustomerService;
 import com.myeshop.service.RoleService;
@@ -102,7 +99,6 @@ public class CustomerController {
 	
 	@RequestMapping(value = "/checkout/step1", method = RequestMethod.GET)
 	public String checkOutStep1(HttpSession session) {
-		//Order order = (Order)session.getAttribute("order");
 		return "step1";
 	}
 	

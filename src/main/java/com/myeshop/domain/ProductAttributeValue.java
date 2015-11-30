@@ -1,6 +1,8 @@
 package com.myeshop.domain;
 
 import java.io.Serializable;
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 
 /**
@@ -19,23 +23,47 @@ import javax.persistence.TableGenerator;
  */
 
 @Entity
-@Table(name = "ES_PRODUCT_ATTRIBUTE_VALUE")
+@Table(name = "es_product_attribute_value")
 public class ProductAttributeValue implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "PRODUCT_ATTRIBUTE_VALUE_ID")
-	@TableGenerator(name = "TABLE_GENERATOR", table = "ES_ID_GEN", pkColumnName = "GEN_NAME", valueColumnName = "GEN_VAL", pkColumnValue = "PRODUCT_ATTRIBUTE_VALUE_ID")
-	@GeneratedValue(strategy = GenerationType.TABLE, generator="TABLE_GENERATOR")
+	@Column(name = "product_attribute_value_id")
+	@TableGenerator(name = "table_generator", table = "es_id_gen", pkColumnName = "gen_name", valueColumnName = "gen_val", pkColumnValue = "product_attribute_value_id")
+	@GeneratedValue(strategy = GenerationType.TABLE, generator="table_generator")
 	private Long id;
 	
-	@Column(name = "VALUE")
+	@Column(name = "value")
 	private String value;
 	
 	@ManyToOne
-	@JoinColumn(name = "ATTRIBUTE_ID")
+	@JoinColumn(name = "attribute_id")
 	private Attribute attribute;
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "date_created")
+	private Date dateCreated;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "date_modified")
+	private Date dateModified;
+	
+	public Date getDateCreated() {
+		return dateCreated;
+	}
+
+	public void setDateCreated(Date dateCreated) {
+		this.dateCreated = dateCreated;
+	}
+
+	public Date getDateModified() {
+		return dateModified;
+	}
+
+	public void setDateModified(Date dateModified) {
+		this.dateModified = dateModified;
+	}
 
 	public Long getId() {
 		return id;

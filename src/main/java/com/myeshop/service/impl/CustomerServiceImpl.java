@@ -31,4 +31,9 @@ public class CustomerServiceImpl implements CustomerService, TransactionalAspect
 		customer.setPassword(PasswordEncoderUtils.encode(customer.getPassword()));
 		customerDao.register(customer);
 	}
+	
+	@Override
+	public void update(Customer customer) {
+		customerDao.update(customer);
+	}
 }

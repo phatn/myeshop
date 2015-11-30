@@ -2,6 +2,8 @@
 .classpath
 .project
 .settings/
+.tomcatplugin
+.#webclasspath
 
 # Intellij
 .idea/

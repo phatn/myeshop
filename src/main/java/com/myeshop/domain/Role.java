@@ -1,6 +1,7 @@
 package com.myeshop.domain;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -16,6 +17,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *  
@@ -24,18 +27,18 @@ import javax.persistence.TableGenerator;
  */
 
 @Entity
-@Table(name = "ES_ROLE")
+@Table(name = "es_role")
 public class Role implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@Column(name = "ROLE_ID")
-	@TableGenerator(name = "TABLE_GENERATOR", table = "ES_ID_GEN", pkColumnName = "GEN_NAME", valueColumnName = "GEN_VAL", pkColumnValue = "ROLE_ID")
-	@GeneratedValue(strategy = GenerationType.TABLE, generator="TABLE_GENERATOR")
+	@Column(name = "role_id")
+	@TableGenerator(name = "table_generator", table = "es_id_gen", pkColumnName = "gen_name", valueColumnName = "gen_val", pkColumnValue = "role_id")
+	@GeneratedValue(strategy = GenerationType.TABLE, generator="table_generator")
 	private Long id;
 	
-	@Column(name = "NAME")
+	@Column(name = "name")
 	private String name;
 
 	@ManyToMany(mappedBy = "roles")
@@ -45,11 +48,35 @@ public class Role implements Serializable {
 	private Set<Customer> customers = new HashSet<Customer>();
 	
 	@ManyToMany(cascade = CascadeType.REFRESH)
-	@JoinTable(name="ES_ROLE_PERMISSION",
-	joinColumns = {@JoinColumn(name="ROLE_ID")},
-	inverseJoinColumns = {@JoinColumn(name = "PERMISSION_ID")})
+	@JoinTable(name="es_role_permission",
+	joinColumns = {@JoinColumn(name="role_id")},
+	inverseJoinColumns = {@JoinColumn(name = "permission_id")})
 	private Set<Permission> permissions = new HashSet<Permission>();
 	
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "date_created")
+	private Date dateCreated;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "date_modified")
+	private Date dateModified;
+	
+	public Date getDateCreated() {
+		return dateCreated;
+	}
+
+	public void setDateCreated(Date dateCreated) {
+		this.dateCreated = dateCreated;
+	}
+
+	public Date getDateModified() {
+		return dateModified;
+	}
+
+	public void setDateModified(Date dateModified) {
+		this.dateModified = dateModified;
+	}
+
 	public Long getId() {
 		return id;
 	}

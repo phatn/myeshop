@@ -20,29 +20,29 @@ import javax.persistence.TemporalType;
  */
 
 @Entity
-@Table(name = "ES_LANGUAGE")
+@Table(name = "es_language")
 public class Language implements Serializable {
 	
 	private static final long serialVersionUID = -13541594974360889L;
 
 	@Id
-	@Column(name = "LANGUAGE_ID")
-	@TableGenerator(name = "TABLE_GENERATOR", table = "ES_ID_GEN", pkColumnName = "GEN_NAME", valueColumnName = "GEN_VAL", pkColumnValue = "LANGUAGE_ID")
-	@GeneratedValue(strategy = GenerationType.TABLE, generator="TABLE_GENERATOR")
+	@Column(name = "language_id")
+	@TableGenerator(name = "table_generator", table = "es_id_gen", pkColumnName = "gen_name", valueColumnName = "gen_val", pkColumnValue = "language_id")
+	@GeneratedValue(strategy = GenerationType.TABLE, generator="table_generator")
 	private Integer id;
 	
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "DATE_CREATED")
+	@Column(name = "date_created")
 	private Date dateCreated;
 	
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "DATE_MODIFIED")
+	@Column(name = "date_modified")
 	private Date dateModified;
 	
-	@Column(name = "CODE")
+	@Column(name = "code")
 	private String code;
 	
-	@Column(name = "SORT_ORDER")
+	@Column(name = "sort_order")
 	private Integer sortOrder;
 
 	public Integer getId() {

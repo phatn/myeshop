@@ -31,45 +31,45 @@ import javax.persistence.Transient;
  */
 
 @Entity
-@Table(name = "ES_CATEGORY")
+@Table(name = "es_category")
 public class Category implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "CATEGORY_ID")
-	@TableGenerator(name = "TABLE_GENERATOR", table = "ES_ID_GEN", pkColumnName = "GEN_NAME", valueColumnName = "GEN_VAL", pkColumnValue = "CATEGORY_ID")
-	@GeneratedValue(strategy = GenerationType.TABLE, generator="TABLE_GENERATOR")
+	@Column(name = "category_id")
+	@TableGenerator(name = "table_generator", table = "es_id_gen", pkColumnName = "gen_name", valueColumnName = "gen_val", pkColumnValue = "category_id")
+	@GeneratedValue(strategy = GenerationType.TABLE, generator="table_generator")
 	private Long id;
 	
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "DATE_CREATED")
+	@Column(name = "date_created")
 	private Date dateCreated;
 	
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "DATE_MODIFIED")
+	@Column(name = "date_modified")
 	private Date dateModified;
 	
-	@Column(name = "CATEGORY_IMAGE")
+	@Column(name = "category_image")
 	private String categoryImage;
 	
-	@Column(name = "SORT_ORDER")
+	@Column(name = "sort_order")
 	private Integer sortOrder = 0;
 	
-	@Column(name = "VISIBLE")
+	@Column(name = "visible")
 	private boolean visible;
 	
-	@Column(name = "DEPTH")
+	@Column(name = "depth")
 	private Integer depth;
 
-	@Column(name = "LINEAGE")
+	@Column(name = "lineage")
 	private String lineage;
 	
-	@Column(name= "CODE", length = 100, nullable = false)
+	@Column(name= "code", length = 100, nullable = false)
 	private String code;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "PARENT_ID")
+	@JoinColumn(name = "parent_id")
 	private Category parent;
 	
 	@OneToMany(mappedBy = "parent", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)

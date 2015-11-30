@@ -526,3 +526,16 @@ img.deleteCartItem {
 	font-size: 20px;
 	font-weight: bold;
 }
+
+table.deliveryInfo td:first-child {
+	width: 30% !important;
+}
+table.deliveryInfo td:not(:first-child) {
+	width: 70% !important;
+}
+
+button.btn_paypal {
+	border: none;
+	padding: 0;
+	margin: 0;
+}

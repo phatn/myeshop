@@ -31,41 +31,41 @@ import javax.persistence.Transient;
  */
 
 @Entity
-@Table(name = "ES_CUSTOMER")
+@Table(name = "es_customer")
 public class Customer implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "CUSTOMER_ID")
-	@TableGenerator(name = "TABLE_GENERATOR", table = "ES_ID_GEN", pkColumnName = "GEN_NAME", valueColumnName = "GEN_VAL", pkColumnValue = "CUSTOMER_ID")
-	@GeneratedValue(strategy = GenerationType.TABLE, generator="TABLE_GENERATOR")
+	@Column(name = "customer_id")
+	@TableGenerator(name = "table_generator", table = "es_id_gen", pkColumnName = "gen_name", valueColumnName = "gen_val", pkColumnValue = "customer_id")
+	@GeneratedValue(strategy = GenerationType.TABLE, generator="table_generator")
 	private Long id;
 	
-	@Column(name = "GENDER")
+	@Column(name = "gender")
 	@Enumerated(value = EnumType.STRING)
 	private Gender gender;
 	
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "CUSTOMER_DOB")
+	@Column(name = "customer_dob")
 	private Date dateOfBirth;
 	
-	@Column(name = "CUSTOMER_EMAIL_ADDRESS")
+	@Column(name = "customer_email_address")
 	private String emailAddress;
 	
-	@Column(name = "CUSTOMER_USER_NAME")
+	@Column(name = "customer_user_name")
 	private String userName;
 	
-	@Column(name = "CUSTOMER_COMPANY")
+	@Column(name = "customer_company")
 	private String company;
 	
-	@Column(name = "CUSTOMER_PASSWORD")
+	@Column(name = "customer_password")
 	private String password;
 	
-	@Column(name="CUSTOMER_ANONYMOUS")
+	@Column(name="customer_anonymous")
 	private boolean anonymous;
 	
-	@Column(name="CUSTOMER_ENABLE")
+	@Column(name="customer_enable")
 	private boolean enable;
 	
 	@Embedded
@@ -75,17 +75,41 @@ public class Customer implements Serializable {
 	private Billing billing;
 
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
-	@JoinTable(name="ES_CUSTOMER_ROLE",
-	joinColumns = {@JoinColumn(name="CUSTOMER_ID")},
-	inverseJoinColumns = {@JoinColumn(name = "ROLE_ID")})
+	@JoinTable(name="es_customer_role",
+	joinColumns = {@JoinColumn(name="customer_id")},
+	inverseJoinColumns = {@JoinColumn(name = "role_id")})
 	private Set<Role> roles = new HashSet<Role>();
 	
-	@Column(name="CUSTOMER_FIRST_NAME")
+	@Column(name="customer_first_name")
 	private String firstName;
 	
-	@Column(name="CUSTOMER_LAST_NAME")
+	@Column(name="customer_last_name")
 	private String lastName;
 	
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "date_created")
+	private Date dateCreated;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "date_modified")
+	private Date dateModified;
+	
+	public Date getDateCreated() {
+		return dateCreated;
+	}
+
+	public void setDateCreated(Date dateCreated) {
+		this.dateCreated = dateCreated;
+	}
+
+	public Date getDateModified() {
+		return dateModified;
+	}
+
+	public void setDateModified(Date dateModified) {
+		this.dateModified = dateModified;
+	}
+
 	public String getFirstName() {
 		return firstName;
 	}

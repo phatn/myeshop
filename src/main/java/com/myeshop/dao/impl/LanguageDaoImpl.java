@@ -1,7 +1,6 @@
 package com.myeshop.dao.impl;
 
 import org.springframework.stereotype.Repository;
-
 import com.myeshop.dao.AbstractGenericDao;
 import com.myeshop.dao.LanguageDao;
 import com.myeshop.domain.Language;
@@ -17,8 +16,8 @@ public class LanguageDaoImpl  extends AbstractGenericDao<Language> implements La
 
 	@Override
 	public Language findByCode(String code) {
-		return (Language)getEntityManager().
-				createQuery("from Language lan where lan.code = :code").
+		return getEntityManager().
+				createQuery("from Language lan where lan.code = :code", Language.class).
 				setParameter("code", code).getSingleResult();
 	}
 }

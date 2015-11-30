@@ -66,7 +66,7 @@
 $(document).ready(function() {
 	
     $("#leftSide").css("display", "none");
-    $("#mainContent").css("margin-left", "0");
+  	$("#mainContent").css("margin-left", "0");
     
     $(".categoryMenu").mouseenter(function() {
     	$(this).css("cursor", "pointer");
@@ -77,8 +77,8 @@ $(document).ready(function() {
     
     // Handle update cart
     $("#updateCart").click(function(){
-    	//var updateURL = "<c:url value='/cart/update' />";
-    	$("#shoppingCart").attr("action", "/cart/update").submit();
+    	var updateURL = "<c:url value='/cart/update' />";
+    	$("#shoppingCart").attr("action", updateURL).submit();
     	return false;
     });
     

@@ -1,49 +1,26 @@
-package com.myeshop.domain;
+package com.myeshop.web.entity;
 
-import java.io.Serializable;
+import org.hibernate.validator.constraints.NotEmpty;
 
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-
-/**
- *  
- * @author Phat Nguyen
- * 
- */
-
-@Embeddable
-public class Billing implements Serializable {
+public class DeliveryForm {
 	
-	private static final long serialVersionUID = -1800664183680083149L;
-
-	@Column(name = "billing_first_name")
+	@NotEmpty(message="{NotEmpty.delivery.firstName}")
 	private String firstName;
 	
-	@Column(name = "billing_last_name")
+	@NotEmpty(message="{NotEmpty.delivery.lastName}")
 	private String lastName;
 	
-	@Column(name = "billing_company")
 	private String company;
 	
-	@Column(name = "billing_address")
+	@NotEmpty(message="{NotEmpty.delivery.addressName}")
 	private String address;
 	
-	@Column(name = "billing_company_address")
 	private String companyAddress;
 	
-	@Column(name = "billing_city")
 	private String city;
 	
-	@Column(name = "billing_phone")
 	private String phone;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "billing_country_id")
-	private Country country;
-
 	public String getFirstName() {
 		return firstName;
 	}
@@ -98,13 +75,5 @@ public class Billing implements Serializable {
 
 	public void setPhone(String phone) {
 		this.phone = phone;
-	}
-
-	public Country getCountry() {
-		return country;
-	}
-
-	public void setCountry(Country country) {
-		this.country = country;
 	}
 }

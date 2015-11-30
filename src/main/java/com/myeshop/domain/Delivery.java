@@ -15,29 +15,29 @@ import javax.persistence.ManyToOne;
 @Embeddable
 public class Delivery {
 	
-	@Column(name = "DELIVERY_FIRST_NAME")
+	@Column(name = "delivery_first_name")
 	private String firstName;
 	
-	@Column(name = "DELIVERY_LAST_NAME")
+	@Column(name = "delivery_last_name")
 	private String lastName;
 	
-	@Column(name = "DELIVERY_COMPANY")
+	@Column(name = "delivery_company")
 	private String company;
 	
-	@Column(name = "DELIVERY_ADDRESS")
+	@Column(name = "delivery_address")
 	private String address;
 	
-	@Column(name = "DELIVERY_STREET_ADDRESS")
+	@Column(name = "delivery_company_address")
 	private String companyAddress;
 	
-	@Column(name = "DELIVERY_CITY")
+	@Column(name = "delivery_city")
 	private String city;
 	
-	@Column(name = "DELIVERY_PHONE")
+	@Column(name = "delivery_phone")
 	private String phone;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "DELIVERY_COUNTRY_ID")
+	@JoinColumn(name = "delivery_country_id")
 	private Country country;
 
 	public String getFirstName() {

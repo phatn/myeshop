@@ -34,50 +34,50 @@ import flexjson.JSON;
  */
 
 @Entity
-@Table(name = "ES_PRODUCT")
+@Table(name = "es_product")
 public class Product implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "PRODUCT_ID")
-	@TableGenerator(name = "TABLE_GENERATOR", table = "ES_ID_GEN", pkColumnName = "GEN_NAME", valueColumnName = "GEN_VAL", pkColumnValue = "PRODUCT_ID")
-	@GeneratedValue(strategy = GenerationType.TABLE, generator="TABLE_GENERATOR")
+	@Column(name = "product_id")
+	@TableGenerator(name = "table_generator", table = "es_id_gen", pkColumnName = "gen_name", valueColumnName = "gen_val", pkColumnValue = "product_id")
+	@GeneratedValue(strategy = GenerationType.TABLE, generator="table_generator")
 	private Long id;
 	
-	@Column(name = "SKU")
+	@Column(name = "sku")
 	private String sku;
 	
-	@Column(name = "PRODUCT_PRICE")
+	@Column(name = "product_price")
 	private BigDecimal productPrice;
 	
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "DATE_CREATED")
+	@Column(name = "date_created")
 	private Date dateCreated;
 	
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "DATE_MODIFIED")
+	@Column(name = "date_modified")
 	private Date dateModified;
 	
-	@Column(name = "AVAILABLE")
+	@Column(name = "available")
 	private boolean available = true;
 
-	@Column(name = "SORT_ORDER")
+	@Column(name = "sort_order")
 	private Integer sortOrder;
 	
-	@Column(name = "QUANTITY_ORDERED")
+	@Column(name = "quantity_ordered")
 	private Integer quantityOrdered;
 	
-	@Column(name = "REVIEW_COUNT")
+	@Column(name = "review_count")
 	private Integer reviewCount;
 	
-	@Column(name = "FEATURED_SELLER")
+	@Column(name = "featured_seller")
 	private Boolean featuredSeller = false;
 	
-	@Column(name = "NEW_RELEASE")
+	@Column(name = "new_release")
 	private Boolean newRelease = false;
 	
-	@Column(name = "CLEARANCE")
+	@Column(name = "clearance")
 	private Boolean clearance = false;
 	
 	
@@ -91,15 +91,15 @@ public class Product implements Serializable {
 	private Set<ProductRelationship> relationships = new HashSet<ProductRelationship>();
 	
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
-	@JoinTable(name="ES_PRODUCT_ATTRIBUTE",
-	joinColumns = {@JoinColumn(name="PRODUCT_ID")},
-	inverseJoinColumns = {@JoinColumn(name = "ATTRIBUTE_ID")})
+	@JoinTable(name="es_product_attribute",
+	joinColumns = {@JoinColumn(name="product_id")},
+	inverseJoinColumns = {@JoinColumn(name = "attribute_id")})
 	private Set<Attribute> attributes = new HashSet<Attribute>();
 	
 	@ManyToMany(cascade = CascadeType.REFRESH)
-	@JoinTable(name="ES_CATEGORY_PRODUCT",
-	joinColumns = {@JoinColumn(name="PRODUCT_ID")},
-	inverseJoinColumns = {@JoinColumn(name = "CATEGORY_ID")})
+	@JoinTable(name="es_category_product",
+	joinColumns = {@JoinColumn(name="product_id")},
+	inverseJoinColumns = {@JoinColumn(name = "category_id")})
 	private Set<Category> categories = new HashSet<Category>();
 	
 	public Long getId() {

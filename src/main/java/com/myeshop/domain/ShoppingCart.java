@@ -25,26 +25,26 @@ import javax.persistence.TemporalType;
  */
 
 @Entity
-@Table(name = "ES_SHOPPING_CART")
+@Table(name = "es_shopping_cart")
 public class ShoppingCart implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@Column(name = "SHOPPING_CART_ID")
-	@TableGenerator(name = "TABLE_GENERATOR", table = "ES_ID_GEN", pkColumnName = "GEN_NAME", valueColumnName = "GEN_VAL", pkColumnValue = "SHOPPING_CART_ID")
-	@GeneratedValue(strategy = GenerationType.TABLE, generator="TABLE_GENERATOR")
+	@Column(name = "shopping_cart_id")
+	@TableGenerator(name = "table_generator", table = "es_id_gen", pkColumnName = "gen_name", valueColumnName = "gen_val", pkColumnValue = "shopping_cart_id")
+	@GeneratedValue(strategy = GenerationType.TABLE, generator="table_generator")
 	private Long id;
 	
-	@Column(name = "SHOPPING_CART_CODE", unique = true, nullable = false)
+	@Column(name = "shopping_cart_code", unique = true, nullable = false)
 	private String shoppingCartCode;
 	
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "DATE_CREATED")
+	@Column(name = "date_created")
 	private Date dateCreated;
 	
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "DATE_MODIFIED")
+	@Column(name = "date_modified")
 	private Date dateModified;
 	
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL ,mappedBy = "shoppingCart")

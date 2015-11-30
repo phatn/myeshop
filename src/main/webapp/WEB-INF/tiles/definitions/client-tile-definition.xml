@@ -58,15 +58,6 @@
 		<put-attribute name="mainContent" value="/WEB-INF/views/client/checkout.jsp" />
 	</definition>
 
-	<definition name="step1" extends="mainLayout">
-		<put-attribute name="title" value="MyEshop - Checkout Step1" />
-		<put-attribute name="topBar" value="" />
-		<put-attribute name="header" value="" />
-		<put-attribute name="topLeftBanner" value="" />
-		<put-attribute name="topRightBanner" value="" />
-		<put-attribute name="mainContent" value="/WEB-INF/views/client/checkoutStep1.jsp" />
-	</definition>
-
 	<definition name="admin" extends="mainLayout">
 		<put-attribute name="title" value="MyEshop - Admin" />
 		<put-attribute name="topBar" value="" />
@@ -94,6 +85,42 @@
 		<put-attribute name="topLeftBanner" value="" />
 		<put-attribute name="topRightBanner" value="" />
 		<put-attribute name="mainContent" value="/WEB-INF/views/client/register.jsp" />
+	</definition>
+	
+	<definition name="checkout" extends="mainLayout">
+		<put-attribute name="title" value="MyEshop - Checkout" />
+		<put-attribute name="topBar" value="" />
+		<put-attribute name="header" value="" />
+		<put-attribute name="topLeftBanner" value="" />
+		<put-attribute name="topRightBanner" value="" />
+		<put-attribute name="mainContent" value="/WEB-INF/views/client/checkout.jsp" />
+	</definition>
+
+	<definition name="step1" extends="mainLayout">
+		<put-attribute name="title" value="MyEshop - Checkout Step1 - Choose Delivery Address" />
+		<put-attribute name="topBar" value="" />
+		<put-attribute name="header" value="" />
+		<put-attribute name="topLeftBanner" value="" />
+		<put-attribute name="topRightBanner" value="" />
+		<put-attribute name="mainContent" value="/WEB-INF/views/client/checkoutStep1.jsp" />
+	</definition>
+
+	<definition name="step2" extends="mainLayout">
+		<put-attribute name="title" value="MyEshop - Checkout Step2 - Review Order" />
+		<put-attribute name="topBar" value="" />
+		<put-attribute name="header" value="" />
+		<put-attribute name="topLeftBanner" value="" />
+		<put-attribute name="topRightBanner" value="" />
+		<put-attribute name="mainContent" value="/WEB-INF/views/client/checkoutStep2.jsp" />
+	</definition>
+
+	<definition name="orderSuccess" extends="mainLayout">
+		<put-attribute name="title" value="MyEshop - Order Success" />
+		<put-attribute name="topBar" value="" />
+		<put-attribute name="header" value="" />
+		<put-attribute name="topLeftBanner" value="" />
+		<put-attribute name="topRightBanner" value="" />
+		<put-attribute name="mainContent" value="/WEB-INF/views/client/orderSuccess.jsp" />
 	</definition>
 	
 	<!-- <definition name="welcome" extends="baseLayout">

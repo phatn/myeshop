@@ -27,49 +27,73 @@ import javax.persistence.TemporalType;
  */
 
 @Entity
-@Table(name = "ES_USER")
+@Table(name = "es_user")
 public class User implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "USER_ID")
-	@TableGenerator(name = "TABLE_GENERATOR", table = "ES_ID_GEN", pkColumnName = "GEN_NAME", valueColumnName = "GEN_VAL", pkColumnValue = "USER_ID")
-	@GeneratedValue(strategy = GenerationType.TABLE, generator="TABLE_GENERATOR")
+	@Column(name = "user_id")
+	@TableGenerator(name = "table_generator", table = "es_id_gen", pkColumnName = "gen_name", valueColumnName = "gen_val", pkColumnValue = "user_id")
+	@GeneratedValue(strategy = GenerationType.TABLE, generator="table_generator")
 	private Long id;
 	
-	@Column(name = "ADMIN_USER_NAME")
+	@Column(name = "admin_user_name")
 	private String adminUserName;
 	
-	@Column(name ="ADMIN_PASSWORD")
+	@Column(name ="admin_password")
 	private String adminPassword;
 	
-	@Column(name ="FIRST_NAME")
+	@Column(name ="first_name")
 	private String firstName;
 	
-	@Column(name ="LAST_NAME")
+	@Column(name ="last_name")
 	private String lastName;
 	
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "LAST_ACCESS")
+	@Column(name = "last_access")
 	private Date lastAccess;
 	
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "LOGIN_ACCESS")
+	@Column(name = "login_access")
 	private Date loginTime;
 	
 	@ManyToMany(cascade = CascadeType.REFRESH)
-	@JoinTable(name="ES_USER_ROLE",
-	joinColumns = {@JoinColumn(name="USER_ID")},
-	inverseJoinColumns = {@JoinColumn(name = "ROLE_ID")})
+	@JoinTable(name="es_user_role",
+	joinColumns = {@JoinColumn(name="user_id")},
+	inverseJoinColumns = {@JoinColumn(name = "role_id")})
 	private Set<Role> roles = new HashSet<Role>();
 	
-	@Column(name="CUSTOMER_ENABLE")
+	@Column(name="customer_enable")
 	private boolean enable;
 	
-	@Column(name = "ADMIN_EMAIL_ADDRESS")
+	@Column(name = "admin_email_address")
 	private String adminEmailAddress;
 	
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "date_created")
+	private Date dateCreated;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "date_modified")
+	private Date dateModified;
+	
+	public Date getDateCreated() {
+		return dateCreated;
+	}
+
+	public void setDateCreated(Date dateCreated) {
+		this.dateCreated = dateCreated;
+	}
+
+	public Date getDateModified() {
+		return dateModified;
+	}
+
+	public void setDateModified(Date dateModified) {
+		this.dateModified = dateModified;
+	}
+
 	public String getAdminEmailAddress() {
 		return adminEmailAddress;
 	}

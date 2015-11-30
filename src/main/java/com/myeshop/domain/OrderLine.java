@@ -1,6 +1,8 @@
 package com.myeshop.domain;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,6 +13,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 /**
  *  
@@ -19,25 +24,54 @@ import javax.persistence.TableGenerator;
  */
 
 @Entity
-@Table(name = "ES_ORDER_LINE")
+@Table(name = "es_order_line")
 public class OrderLine implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "ORDER_LINE_ID")
-	@TableGenerator(name = "TABLE_GENERATOR", table = "ES_ID_GEN", pkColumnName = "GEN_NAME", valueColumnName = "GEN_VAL", pkColumnValue = "ORDER_LINE_ID")
-	@GeneratedValue(strategy = GenerationType.TABLE, generator="TABLE_GENERATOR")
+	@Column(name = "order_line_id")
+	@TableGenerator(name = "table_generator", table = "es_id_gen", pkColumnName = "gen_name", valueColumnName = "gen_val", pkColumnValue = "order_line_id")
+	@GeneratedValue(strategy = GenerationType.TABLE, generator="table_generator")
 	private Long id;
 	
 	@ManyToOne
-	@JoinColumn(name = "ORDER_ID")
+	@JoinColumn(name = "order_id")
 	private Order order;
 	
 	@ManyToOne
-	@JoinColumn(name = "PRODUCT_ID")
+	@JoinColumn(name = "product_id")
 	private Product product;
 	
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "date_created")
+	private Date dateCreated;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "date_modified")
+	private Date dateModified;
+	
+	@Transient
+	public BigDecimal getTotalPrice() {
+		return product.getProductPrice().multiply(new BigDecimal(quantity));
+	}
+	
+	public Date getDateCreated() {
+		return dateCreated;
+	}
+
+	public void setDateCreated(Date dateCreated) {
+		this.dateCreated = dateCreated;
+	}
+
+	public Date getDateModified() {
+		return dateModified;
+	}
+
+	public void setDateModified(Date dateModified) {
+		this.dateModified = dateModified;
+	}
+
 	private Integer quantity;
 
 	public Long getId() {

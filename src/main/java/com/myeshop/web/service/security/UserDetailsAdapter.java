@@ -67,4 +67,8 @@ public class UserDetailsAdapter implements UserDetails {
 	public String getEmail() {
 		return user.getAdminEmailAddress();
 	}
+	
+	public User getUser() {
+		return user;
+	}
 }

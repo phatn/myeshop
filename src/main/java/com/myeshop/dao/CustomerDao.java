@@ -14,4 +14,6 @@ public interface CustomerDao {
 	
 	public void register(Customer customer);
 	
+	public void update(Customer customer);
+	
 }

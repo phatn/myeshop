@@ -11,8 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,7 +26,7 @@ import com.myeshop.service.OrderService;
 import com.myeshop.service.ProductService;
 import com.myeshop.web.entity.Cart;
 import com.myeshop.web.entity.CartItem;
-import com.myeshop.web.service.security.CustomerDetailsAdapter;
+import com.myeshop.web.utils.UserUtils;
 
 /**
  *  
@@ -94,15 +92,13 @@ public class ShoppingCartController {
 	@RequestMapping(value = "/customer/checkout", method = RequestMethod.POST)
 	public String checkout(HttpSession session) {
 		createOrder(cart, session);
-		return "redirect:/customer/checkout/step1";
+		return "redirect:/checkout/step1";
 	}
 	
 	private void createOrder(Cart cart, HttpSession session) {
 		
-		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-		CustomerDetailsAdapter customerDetailsAdapter = (CustomerDetailsAdapter)authentication.getPrincipal();
 		Order order = new Order();
-		order.setCustomer(customerDetailsAdapter.getCustomer());
+		order.setCustomer(UserUtils.getLoggedInCustomer());
 		
 		Set<OrderLine> orderLines = new HashSet<OrderLine>();
 		List<CartItem> cartItems = cart.getCartItems();
@@ -113,9 +109,9 @@ public class ShoppingCartController {
 			orderLine.setOrder(order);
 			orderLines.add(orderLine);
 		}
-		
 		order.setOrderLines(orderLines);
 		order.setOrderStatus(OrderStatus.PENDING);
+		order.setGrandTotal(cart.getGrandTotal());
 		orderService.create(order);
 		session.setAttribute("order", order);
 	}
