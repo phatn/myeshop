@@ -4,12 +4,33 @@
 
 <tiles-definitions>
 	
-	<definition name="mainLayout" template="/WEB-INF/tiles/template/client/mainLayout.jsp">
-		<put-attribute name="title" value="MyEshop" />
-		<put-attribute name="topBar" value="/WEB-INF/tiles/template/client/topBar.jsp" />
-		<put-attribute name="header" value="/WEB-INF/tiles/template/client/header.jsp" />
-		<put-attribute name="mainContent" value="" />
-		<put-attribute name="footer" value="/WEB-INF/tiles/template/client/footer.jsp" />
+	<definition name="adminMainLayout" template="/WEB-INF/tiles/template/admin/adminMainLayout.jsp">
+		<put-attribute name="title" value="MyEshop - Admin" />
+		<!-- <put-attribute name="topBar" value="/WEB-INF/tiles/template/client/topBar.jsp" /> -->
+		<put-attribute name="adminHeader" value="/WEB-INF/tiles/template/admin/adminHeader.jsp" />
+		<put-attribute name="leftSide" value="/WEB-INF/tiles/template/admin/leftSide.jsp" />
+		<put-attribute name="adminContent" value="" />
+		<!-- <put-attribute name="footer" value="/WEB-INF/tiles/template/client/footer.jsp" /> -->
+	</definition>
+	
+	<definition name="dashboard" extends="adminMainLayout">
+		<put-attribute name="title" value="MyEshop - Dashboard" />
+		<put-attribute name="adminContent" value="/WEB-INF/views/admin/dashboard.jsp" />
+	</definition>
+	
+	<definition name="adminCategory" extends="adminMainLayout">
+		<put-attribute name="title" value="MyEshop - Category" />
+		<put-attribute name="adminContent" value="/WEB-INF/views/admin/adminCategory.jsp" />
+	</definition>
+	
+	<definition name="editCategory" extends="adminMainLayout">
+		<put-attribute name="title" value="MyEshop - Edit Category" />
+		<put-attribute name="adminContent" value="/WEB-INF/views/admin/editCategory.jsp" />
+	</definition>
+	
+	<definition name="createCategory" extends="adminMainLayout">
+		<put-attribute name="title" value="MyEshop - Create Category" />
+		<put-attribute name="adminContent" value="/WEB-INF/views/admin/createCategory.jsp" />
 	</definition>
 	
 	<definition name="home" extends="mainLayout">

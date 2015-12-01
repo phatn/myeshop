@@ -25,4 +25,9 @@ public interface CategoryService {
 	
 	public Category getBySefUrl(String sefUrl, Language language);
 	
+	public Category getById(Long categoryId, Language language);
+	
+	public void update(Category category);
+	
+	public void create(Category category);
 }

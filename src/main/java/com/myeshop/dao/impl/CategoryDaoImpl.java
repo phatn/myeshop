@@ -56,7 +56,7 @@ public class CategoryDaoImpl extends AbstractGenericDao<Category> implements Cat
 		StringBuilder queryBuilder = new StringBuilder();
 		queryBuilder.append("select DISTINCT c from Category c left join fetch c.categories cats ");
 		queryBuilder.append("join fetch c.descriptions cd ");
-		queryBuilder.append("join cd.language lang where lang.code = :languageCode");
+		queryBuilder.append("join cd.language lang where c.parent IS NULL and lang.code = :languageCode");
 		TypedQuery<Category> query = getEntityManager().createQuery(queryBuilder.toString(), Category.class);
 		query.setParameter("languageCode", language.getCode());
 		List<Category> rootCategories = query.getResultList();
@@ -76,7 +76,7 @@ public class CategoryDaoImpl extends AbstractGenericDao<Category> implements Cat
 		StringBuilder queryBuilder = new StringBuilder();
 		queryBuilder.append("select DISTINCT c from Category c left join fetch c.categories cats ");
 		queryBuilder.append("join fetch c.descriptions cd ");
-		queryBuilder.append("join cd.language lang where lang.code = :languageCode");
+		queryBuilder.append("join cd.language lang where c.parent IS NULL and lang.code = :languageCode");
 		TypedQuery<Category> query = getEntityManager().createQuery(queryBuilder.toString(), Category.class);
 		query.setParameter("languageCode", languageCode);
 		List<Category> rootCategories = query.getResultList();
@@ -97,6 +97,17 @@ public class CategoryDaoImpl extends AbstractGenericDao<Category> implements Cat
 		queryBuilder.append("where cd.sefUrl = :sefUrl and lang.code = :languageCode");
 		TypedQuery<Category> query = getEntityManager().createQuery(queryBuilder.toString(), Category.class);
 		query.setParameter("sefUrl", sefUrl);
+		query.setParameter("languageCode", language.getCode());
+		return query.getSingleResult(); 
+	}
+
+	@Override
+	public Category getById(Long categoryId, Language language) {
+		StringBuilder queryBuilder = new StringBuilder();
+		queryBuilder.append("select c from Category c left join fetch c.descriptions cd join cd.language lang ");
+		queryBuilder.append("where c.id = :categoryId and lang.code = :languageCode");
+		TypedQuery<Category> query = getEntityManager().createQuery(queryBuilder.toString(), Category.class);
+		query.setParameter("categoryId", categoryId);
 		query.setParameter("languageCode", language.getCode());
 		return query.getSingleResult(); 
 	}

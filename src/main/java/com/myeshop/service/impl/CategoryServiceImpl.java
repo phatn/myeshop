@@ -62,5 +62,19 @@ public class CategoryServiceImpl implements CategoryService, TransactionalAspect
 	public Category getBySefUrl(String sefUrl, Language language) {
 		return categoryDao.getBySefUrl(sefUrl, language);
 	}
-	
+
+	@Override
+	public Category getById(Long categoryId, Language language) {
+		return categoryDao.getById(categoryId, language);
+	}
+
+	@Override
+	public void update(Category category) {
+		categoryDao.update(category);
+	}
+
+	@Override
+	public void create(Category category) {
+		categoryDao.create(category);
+	}
 }

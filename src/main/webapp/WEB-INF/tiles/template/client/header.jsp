@@ -8,7 +8,7 @@
 	<div class="categoryTitle"><spring:message code="categories.label" /><img class="arrowDropDown" alt="" src="<c:url value="/resources/images/arrow-drop-down.png" />"> </div>
 	<div id="leftSide">
 		<ul class="sideBar">
-		<c:forEach items="${categories}" var="category">
+		<%-- <c:forEach items="${categories}" var="category">
 			<li <c:if test="${not empty category.categories}">class="hasChild"</c:if>>
 				<a href="<c:url value="/product/list/"/>${category.description.sefUrl}">${category.description.name}</a>
 			<c:if test="${not empty category.categories }">
@@ -28,7 +28,14 @@
 				</ul>
 			</c:if>
 			</li>
+		</c:forEach> --%>
+		
+		<c:forEach items="${categories}" var="category">
+			<li>
+				<a href="<c:url value="/product/list/"/>${category.description.sefUrl}">${category.description.name}</a>
+			</li>
 		</c:forEach>
+		
 		</ul>
 	</div>
 </div>

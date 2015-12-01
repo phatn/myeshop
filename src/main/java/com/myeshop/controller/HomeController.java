@@ -37,7 +37,7 @@ public class HomeController {
 	@Autowired
 	private CategoryService categoryService;
 	
-	@RequestMapping("/")
+	@RequestMapping("")
 	public String home(Model model, HttpServletRequest request) {
 		logger.info("Home controller");
 		Language language = (Language)request.getAttribute(Constant.LANGUAGE);

@@ -1,0 +1,14 @@
+2015-11-30 17:35:40 INFO  LogHelper:46 - HHH000204: Processing PersistenceUnitInfo [
+	name: default
+	...]
+2015-11-30 17:35:40 INFO  Version:54 - HHH000412: Hibernate Core {4.3.11.Final}
+2015-11-30 17:35:40 INFO  Environment:239 - HHH000206: hibernate.properties not found
+2015-11-30 17:35:40 INFO  Environment:346 - HHH000021: Bytecode provider name : javassist
+2015-11-30 17:35:40 INFO  Version:66 - HCANN000001: Hibernate Commons Annotations {4.0.5.Final}
+2015-11-30 17:35:41 INFO  Dialect:145 - HHH000400: Using dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+2015-11-30 17:35:41 INFO  ASTQueryTranslatorFactory:47 - HHH000397: Using ASTQueryTranslatorFactory
+2015-11-30 17:35:41 INFO  Version:17 - HV000001: Hibernate Validator 5.2.1.Final
+2015-11-30 17:35:48 INFO  HomeController:42 - Home controller
+2015-11-30 17:35:56 INFO  HomeController:42 - Home controller
+2015-11-30 17:35:56 INFO  HomeController:42 - Home controller
+2015-11-30 17:36:03 INFO  HomeController:42 - Home controller
