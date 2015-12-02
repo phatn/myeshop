@@ -12,9 +12,9 @@
     <div class="col-xs-12">
       <div class="box">
         <div class="box-header">
-          <h3 class="box-title">Category</h3>
+          <h3 class="box-title">Products</h3>
           <p style="float:right">
-          	<button class="btn btn-success" type="button" name="category_create" onclick="category_button_create()">Create</button>
+          	<button class="btn btn-success" type="button" name="product_create" onclick="product_button_create()">Create</button>
           </p>
         </div><!-- /.box-header -->
         <div class="box-body">
@@ -27,32 +27,32 @@
                 <th>Description</th>
                 <th>Sef-URL</th>
                 <th>Code</th>
-                <th>Products</th>
+                <th>Price</th>
                 <th>Actions</th>
               </tr>
             </thead>
             <tbody>
             <c:choose>
-            	<c:when test="${not empty categories}">
-            		<c:forEach items="${categories}" var="cat" varStatus="loop">
+            	<c:when test="${not empty products}">
+            		<c:forEach items="${products}" var="prod" varStatus="loop">
 						<tr>
 			                <td>${loop.index + 1}</td> 
-			                <td>${cat.description.name}</td>
+			               <%--  <td>${prod.attributes[0].name}</td> --%>
 			              <%--   <td>${cat.categoryImage}</td> --%>
-			                <td>${cat.description.description}</td>
-			                <td>${cat.description.sefUrl}</td>
-			                <td>${cat.code}</td>
-			                <td><a href="<c:url value="/admin/category/listProducts/${cat.id}"/>">View Products</a> </td>
+			                <td><%-- ${prod.attribute.description} --%></td>
+			                <td><%-- ${prod.description.sefUrl} --%></td>
+			                <td></td>
+			                <td>${prod.productPrice}</td>
 			                <td>
-			                	<button class="btn btn-info btn-xs" type="button" name="category_edit" onclick="category_button_edit('${cat.id}')">Edit</button>
-			                	<button class="btn btn-danger btn-xs" type="button" name="category_delete" onclick="category_button_delete('${cat.description.name}', '${cat.id}')">Delete</button>
+			                	<button class="btn btn-info btn-xs" type="button" name="product_edit" onclick="product_button_edit('${prod.id}')">Edit</button>
+			                	<button class="btn btn-danger btn-xs" type="button" name="product_delete" onclick="product_button_delete('{prod.description.name}', '${prod.id}')">Delete</button>
 			                </td>
 			              </tr>      
 			    	</c:forEach>	
             	</c:when>
             	<c:otherwise>
             		<tr>
-						<td colspan="7">Empty category</td>
+						<td colspan="7">Empty Product</td>
 					</tr>
             	</c:otherwise>
             </c:choose>
@@ -86,10 +86,10 @@
 <script>
 
 // Delete category
-function category_button_delete(category_name, categoryId) {
+function product_button_delete(product_name, productId) {
 	BootstrapDialog.confirm({
       title: 'WARNING',
-      message: 'Are you sure you want to delete <strong>' + category_name + "</strong>?",
+      message: 'Are you sure you want to delete <strong>' + productId + "</strong>?",
       type: BootstrapDialog.TYPE_WARNING, // <-- Default value is BootstrapDialog.TYPE_PRIMARY
       closable: true, // <-- Default value is false
       draggable: false, // <-- Default value is false
@@ -100,7 +100,7 @@ function category_button_delete(category_name, categoryId) {
           // result will be true if button was click, while it will be false if users close the dialog directly.
           if(result) {
         	  // Delete category
-        	  window.location="<c:url value='/admin/category/delete/' />" + categoryId + "/" + category_name;
+        	  window.location="<c:url value='/admin/product/delete/' />" + productId + "/" + product_name;
           }else {
               // Do not execute any action and close the popup
           }
@@ -109,12 +109,12 @@ function category_button_delete(category_name, categoryId) {
 }
 
 // Edit category
-function category_button_edit(categoryId) {
-	window.location="<c:url value='/admin/category/edit/' />" + categoryId;
+function product_button_edit(productId) {
+	window.location="<c:url value='/admin/product/edit/' />" + productId;
 }
 
-function category_button_create() {
-	window.location="<c:url value='/admin/category/create' />";
+function product_button_create() {
+	window.location="<c:url value='/admin/product/create' />";
 }
 
 $(function () {

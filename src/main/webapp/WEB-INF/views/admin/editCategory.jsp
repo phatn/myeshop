@@ -31,11 +31,11 @@
 							<form:input type="text" path="code" class="form-control" id="inputCode" placeholder="Enter Code..." />
             				<form:errors path="code" cssClass="text-danger" />
 						</div>
-						<div class="form-group">
+						<!-- <div class="form-group">
 							<label for="exampleInputFile">Image</label>
 							<input id="exampleInputFile" type="file">
 							<p class="help-block">Upload image for this category.</p>
-						</div>
+						</div> -->
 						<!-- <div class="checkbox">
 							<label>
 								<input type="checkbox">

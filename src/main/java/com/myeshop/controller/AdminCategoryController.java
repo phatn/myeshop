@@ -2,6 +2,7 @@ package com.myeshop.controller;
 
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,7 +22,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.myeshop.domain.Category;
 import com.myeshop.domain.CategoryDescription;
 import com.myeshop.domain.Language;
+import com.myeshop.domain.Product;
 import com.myeshop.service.CategoryService;
+import com.myeshop.service.ProductService;
 import com.myeshop.web.contants.Constant;
 import com.myeshop.web.entity.CategoryForm;
 
@@ -37,6 +40,9 @@ public class AdminCategoryController {
 	
 	@Autowired
 	private CategoryService categoryService;
+	
+	@Autowired
+	private ProductService productService;
 	
 	@RequestMapping("/list")
 	public String list(Model model, HttpServletRequest request) {
@@ -87,10 +93,35 @@ public class AdminCategoryController {
 		if(result.hasErrors()) {
 			return "createCategory";
 		}
-		Category category = toCategory(form);
+		Language language = (Language)request.getAttribute(Constant.LANGUAGE);
+		Category category = new Category();
+		Set<CategoryDescription> catDescs = new HashSet<CategoryDescription>();
+		CategoryDescription catDes = new CategoryDescription();
+		catDes.setName(form.getName());
+		catDes.setDescription(form.getDescription());
+		catDes.setSefUrl(form.getSefUrl());
+		catDes.setLanguage(language);
+		catDes.setCategory(category);
+		catDescs.add(catDes);
+		category.setDescriptions(catDescs);
+		category.setCode(form.getCode());
 		categoryService.create(category);
 		redir.addFlashAttribute("message", "Create " + form.getName() + " category successfully.");
 		return	"redirect:/admin/category/list";
+	}
+	
+	@RequestMapping(value = "/delete/{categoryId}/{categoryName}", method = RequestMethod.GET)
+	public String delete(@PathVariable("categoryId") Long categoryId, @PathVariable("categoryName") String categoryName, RedirectAttributes redir) {
+		categoryService.deleteById(categoryId);
+		redir.addFlashAttribute("message", "Delete " + categoryName + " successfully.");
+		return	"redirect:/admin/category/list";
+	}
+	
+	@RequestMapping(value = "/listProducts/{categoryId}", method = RequestMethod.GET)
+	public String listProducts(@PathVariable("categoryId") Long categoryId, Model model) {
+		List<Product> products = productService.getProductsByCategoryId(categoryId);
+		model.addAttribute("products", products);
+		return "productsInCategory";
 	}
 	
 	private CategoryForm toCategoryForm(Category category) {
@@ -104,16 +135,16 @@ public class AdminCategoryController {
 		return form;
 	}
 	
-	private Category toCategory(CategoryForm form) {
-		Category category = new Category();
-		Set<CategoryDescription> catDescs = new HashSet<CategoryDescription>();
-		CategoryDescription catDes = new CategoryDescription();
-		catDes.setName(form.getName());
-		catDes.setDescription(form.getDescription());
-		catDes.setSefUrl(form.getSefUrl());
-		catDescs.add(catDes);
-		category.setDescriptions(catDescs);
-		category.setCode(form.getCode());
-		return category;
-	}
+//	private Category toCategory(CategoryForm form) {
+//		Category category = new Category();
+//		Set<CategoryDescription> catDescs = new HashSet<CategoryDescription>();
+//		CategoryDescription catDes = new CategoryDescription();
+//		catDes.setName(form.getName());
+//		catDes.setDescription(form.getDescription());
+//		catDes.setSefUrl(form.getSefUrl());
+//		catDescs.add(catDes);
+//		category.setDescriptions(catDescs);
+//		category.setCode(form.getCode());
+//		return category;
+//	}
 }
