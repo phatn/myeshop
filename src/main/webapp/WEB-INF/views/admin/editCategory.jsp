@@ -27,6 +27,11 @@
 							<form:errors path="sefUrl" cssClass="text-danger" />
 						</div>
 						<div class="form-group">
+							<label for="inputCode">Code</label>
+							<form:input type="text" path="code" class="form-control" id="inputCode" placeholder="Enter Code..." />
+            				<form:errors path="code" cssClass="text-danger" />
+						</div>
+						<div class="form-group">
 							<label for="exampleInputFile">Image</label>
 							<input id="exampleInputFile" type="file">
 							<p class="help-block">Upload image for this category.</p>
@@ -38,6 +43,7 @@
 							</label>
 						</div> -->
 					</div>
+					<form:input type="hidden" path="id" class="form-control" id="inputId" value="${category.id}" />
 					<input type="hidden" name="categoryId" value="${category.id}"/>
 					<div class="box-footer">
 						<button class="btn btn-primary" type="submit">Submit</button>

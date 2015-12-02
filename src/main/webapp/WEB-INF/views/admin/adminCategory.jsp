@@ -1,10 +1,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.7/css/bootstrap-dialog.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.7/css/bootstrap-dialog.min.css">
 <!-- Main content -->
 <section class="content"> 
 	<c:if test="${not empty message}">
-		<div class="alert alert-success">
+		<div class="alert alert-success" role="alert">
 	  		<strong>${message}</strong>
 		</div>
 	</c:if>
@@ -26,6 +26,7 @@
                 <th>Image</th>
                 <th>Description</th>
                 <th>Sef-URL</th>
+                <th>Code</th>
                 <th>Actions</th>
               </tr>
             </thead>
@@ -39,6 +40,7 @@
 			                <td>${cat.categoryImage}</td>
 			                <td>${cat.description.description}</td>
 			                <td>${cat.description.sefUrl}</td>
+			                <td>${cat.code}</td>
 			                <td>
 			                	<button class="btn btn-info btn-xs" type="button" name="category_edit" onclick="category_button_edit('${cat.id}')">Edit</button>
 			                	<button class="btn btn-danger btn-xs" type="button" name="category_delete" onclick="category_button_delete('${cat.description.name}')">Delete</button>
@@ -48,21 +50,11 @@
             	</c:when>
             	<c:otherwise>
             		<tr>
-						<td colspan="6">Empty catetory</td>
+						<td colspan="7">Empty category</td>
 					</tr>
             	</c:otherwise>
             </c:choose>
             </tbody>
-            <!-- <tfoot>
-              <tr>
-                <th>Rendering engine</th>
-                <th>Browser</th>
-                <th>Platform(s)</th>
-                <th>Engine version</th>
-                <th>CSS grade</th>
-                <th>CSS grade</th>
-              </tr>
-            </tfoot> -->
           </table>
         </div><!-- /.box-body -->
       </div><!-- /.box -->

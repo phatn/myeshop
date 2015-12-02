@@ -67,6 +67,8 @@ public class AdminCategoryController {
 		category.getDescription().setName(form.getName());
 		category.getDescription().setDescription(form.getDescription());
 		category.getDescription().setSefUrl(form.getSefUrl());
+		category.setCode(form.getCode());
+		categoryService.update(category);
 		redir.addFlashAttribute("message", "Update " + category.getDescription().getName() + " category successfully.");
 		return	"redirect:/admin/category/list";
 	}
