@@ -35,7 +35,7 @@ import com.myeshop.web.entity.CategoryForm;
  */
 
 @Controller
-@RequestMapping("admin/category/")
+@RequestMapping("/admin/category")
 public class AdminCategoryController {
 	
 	@Autowired
@@ -121,6 +121,7 @@ public class AdminCategoryController {
 	public String listProducts(@PathVariable("categoryId") Long categoryId, Model model) {
 		List<Product> products = productService.getProductsByCategoryId(categoryId);
 		model.addAttribute("products", products);
+		model.addAttribute("categoryId", categoryId);
 		return "productsInCategory";
 	}
 	

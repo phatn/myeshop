@@ -1,6 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap3-dialog/1.34.7/css/bootstrap-dialog.min.css">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!-- Main content -->
 <section class="content"> 
 	<c:if test="${not empty message}">
@@ -22,11 +24,13 @@
             <thead>
               <tr>
                 <th>No.</th> 
+                <th>Image</th>
                 <th>Name</th>
-               <!--  <th>Image</th> -->
                 <th>Description</th>
-                <th>Sef-URL</th>
-                <th>Code</th>
+                <th>Available</th>
+                <th>Feature Seller</th>
+                <th>New Release</th>
+                <th>Clearance</th>
                 <th>Price</th>
                 <th>Actions</th>
               </tr>
@@ -34,25 +38,34 @@
             <tbody>
             <c:choose>
             	<c:when test="${not empty products}">
-            		<c:forEach items="${products}" var="prod" varStatus="loop">
+            		<c:forEach items="${products}" var="product" varStatus="loop">
 						<tr>
 			                <td>${loop.index + 1}</td> 
-			               <%--  <td>${prod.attributes[0].name}</td> --%>
-			              <%--   <td>${cat.categoryImage}</td> --%>
-			                <td><%-- ${prod.attribute.description} --%></td>
-			                <td><%-- ${prod.description.sefUrl} --%></td>
-			                <td></td>
-			                <td>${prod.productPrice}</td>
+			                <td><img width="60px" 
+							src="<c:url value= "/resources/images/uploads/products/small/"/>${product.smallImage.image}" alt="Product Image"> </td>
+			                <td>${product.attributeName.attributeValue.value}</td>
+			                <td><c:if test="${not empty product.description}"><textarea rows="" cols="">${product.description}</textarea></c:if></td>
+			                <td><input type="checkbox" <c:if test="${product.available}">checked="checked"</c:if> disabled="disabled"/></td>
+			                <td><input type="checkbox" <c:if test="${product.featuredSeller}">checked="checked"</c:if> disabled="disabled"/></td>
+			                <td><input type="checkbox" <c:if test="${product.newRelease}">checked="checked"</c:if> disabled="disabled"/></td>
+			                <td><input type="checkbox" <c:if test="${product.clearance}">checked="checked"</c:if> disabled="disabled"/></td>
+			                <td>${product.productPrice}</td>
 			                <td>
-			                	<button class="btn btn-info btn-xs" type="button" name="product_edit" onclick="product_button_edit('${prod.id}')">Edit</button>
-			                	<button class="btn btn-danger btn-xs" type="button" name="product_delete" onclick="product_button_delete('{prod.description.name}', '${prod.id}')">Delete</button>
+			                	<form action="<c:url value="/admin/product/edit/${product.id}"/>">
+			                		<input type="hidden" name="categoryId" value="${categoryId}" />
+			                		<button class="btn btn-info btn-xs" type="submit" name="product_edit">Edit</button>
+			                	</form>
+			                	<form action="<c:url value="/admin/product/delete/${product.id}"/>">
+			                		<input type="hidden" name="categoryId" value="${categoryId}" />
+			                		<button class="btn btn-danger btn-xs" type="submit" name="product_delete">Delete</button>
+			                	</form>
 			                </td>
 			              </tr>      
 			    	</c:forEach>	
             	</c:when>
             	<c:otherwise>
             		<tr>
-						<td colspan="7">Empty Product</td>
+						<td colspan="10">No products found</td>
 					</tr>
             	</c:otherwise>
             </c:choose>
