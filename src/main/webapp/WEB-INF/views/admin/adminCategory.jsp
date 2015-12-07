@@ -18,7 +18,7 @@
           </p>
         </div><!-- /.box-header -->
         <div class="box-body">
-          <table id="category_info" class="table table-bordered table-hover">
+          <table id="category-info" class="table table-bordered table-hover">
             <thead>
               <tr>
                 <th>No.</th> 
@@ -44,8 +44,11 @@
 			                <td>${cat.code}</td>
 			                <td><a href="<c:url value="/admin/category/listProducts/${cat.id}"/>">View Products</a> </td>
 			                <td>
-			                	<button class="btn btn-info btn-xs" type="button" name="category_edit" onclick="category_button_edit('${cat.id}')">Edit</button>
-			                	<button class="btn btn-danger btn-xs" type="button" name="category_delete" onclick="category_button_delete('${cat.description.name}', '${cat.id}')">Delete</button>
+			                	<button class="btn btn-info btn-xs" type="button" onclick="category_button_edit('${cat.id}')">Edit</button>
+			                	<form id="frm_cat_delete_${cat.id}" action="<c:url value="/admin/category/delete/${cat.id}"/>" method="post">
+			                		<input type="hidden" name="categoryName" value="${cat.description.name}" />
+			                		<button class="btn btn-danger btn-xs" type="button" onclick="category_button_delete('${cat.id}','${cat.description.name}')">Delete</button>
+								</form>
 			                </td>
 			              </tr>      
 			    	</c:forEach>	
@@ -86,7 +89,7 @@
 <script>
 
 // Delete category
-function category_button_delete(category_name, categoryId) {
+function category_button_delete(category_id, category_name) {
 	BootstrapDialog.confirm({
       title: 'WARNING',
       message: 'Are you sure you want to delete <strong>' + category_name + "</strong>?",
@@ -100,7 +103,9 @@ function category_button_delete(category_name, categoryId) {
           // result will be true if button was click, while it will be false if users close the dialog directly.
           if(result) {
         	  // Delete category
-        	  window.location="<c:url value='/admin/category/delete/' />" + categoryId + "/" + category_name;
+        	  //window.location="<c:url value='/admin/category/delete/' />" + categoryId + "/" + category_name;
+        	  var frm_cat_delete = "#frm_cat_delete_" + category_id;
+        	  $(frm_cat_delete).submit();
           }else {
               // Do not execute any action and close the popup
           }

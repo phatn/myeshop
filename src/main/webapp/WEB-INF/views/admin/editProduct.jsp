@@ -7,30 +7,30 @@
      	<div class="col-md-8 col-md-offset-2">
 			<div class="box box-primary">
 				<div class="box-header with-border">
-					<h3 class="box-title">Edit Category</h3>
+					<h3 class="box-title">Edit Product</h3>
 				</div>
-				<c:url var="submitEditUrl" value="/admin/category/edit" />
-				<form:form role="form"  action="${submitEditUrl}" modelAttribute="category" method="post">
+				<c:url var="submitEditUrl" value="/admin/product/edit" />
+				<form:form role="form"  action="${submitEditUrl}" modelAttribute="product" method="post" enctype="multipart/form-data">
 					<div class="box-body">
 						<div class="form-group">
 							<label for="exampleInputEmail1">Name</label>
 							<form:input type="text" path="name" class="form-control" id="inputName" placeholder="Enter Name..." />
             				<form:errors path="name" cssClass="text-danger" />
 						</div>
-						<div class="form-group">
+						<%-- <div class="form-group">
 							<label for="txtAreaDescription">Description</label>
 							<form:textarea path="description" class="form-control" id="txtAreaDescription" placeholder="Enter Description" rows="3" />
-						</div>
-						<div class="form-group">
+						</div> --%>
+						<%-- <div class="form-group">
 							<label for="exampleInputPassword1">Self URL</label>
 							<form:input type="text" path="sefUrl" class="form-control" id="inputSelfURL" placeholder="Enter self url..." />
 							<form:errors path="sefUrl" cssClass="text-danger" />
-						</div>
-						<div class="form-group">
+						</div> --%>
+						<%-- <div class="form-group">
 							<label for="inputCode">Code</label>
 							<form:input type="text" path="code" class="form-control" id="inputCode" placeholder="Enter Code..." />
             				<form:errors path="code" cssClass="text-danger" />
-						</div>
+						</div> --%>
 						<!-- <div class="form-group">
 							<label for="exampleInputFile">Image</label>
 							<input id="exampleInputFile" type="file">
@@ -42,9 +42,36 @@
 								Check me out
 							</label>
 						</div> -->
+						<div class="checkbox">
+							<label>
+								<form:checkbox path="newRelease" />
+								New Release
+							</label>
+						</div>
+						<div class="checkbox">
+							<label>
+								<form:checkbox path="featuredSeller" />
+								Featured Seller
+							</label>
+						</div>
+						<div class="checkbox">
+							<label>
+								<form:checkbox path="clearance" />
+								Clearance
+							</label>
+						</div>
+						<div class="form-group">
+							<div>
+								<img width="100px"  src="<c:url value= "/resources/images/uploads/products/small/"/>${product.image}" alt="Product Image" />
+							</div>
+							<div>
+								<form:input id="productImage" path="multipartFileImage" type="file" />
+								<p class="help-block">Change image for this product.</p>
+							</div>
+						</div>
 					</div>
-					<form:input type="hidden" path="id" class="form-control" id="inputId" value="${category.id}" />
-					<input type="hidden" name="categoryId" value="${category.id}"/>
+					<%-- <form:input type="hidden" path="id" class="form-control" id="inputId" value="${category.id}" /> --%>
+					<form:input type="hidden" path="id"/>
 					<div class="box-footer">
 						<button class="btn btn-primary" type="submit">Submit</button>
 					</div>
@@ -54,7 +81,7 @@
   </div><!-- /.row -->
 </section><!-- /.content -->
 
-<!-- jQuery 2.1.4 -->
+	<!-- jQuery 2.1.4 -->
  <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
  <!-- Bootstrap 3.3.5 -->
  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>

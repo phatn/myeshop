@@ -52,12 +52,12 @@
 			                <td>${product.productPrice}</td>
 			                <td>
 			                	<form action="<c:url value="/admin/product/edit/${product.id}"/>">
-			                		<input type="hidden" name="categoryId" value="${categoryId}" />
-			                		<button class="btn btn-info btn-xs" type="submit" name="product_edit">Edit</button>
+			                		<%-- <input type="hidden" name="categoryId" value="${categoryId}" /> --%>
+			                		<button class="btn btn-info btn-xs" type="submit">Edit</button>
 			                	</form>
-			                	<form action="<c:url value="/admin/product/delete/${product.id}"/>">
+			                	<form id="frm_product_delete_${product.id}" action="<c:url value="/admin/product/delete/${product.id}"/>" method="post">
 			                		<input type="hidden" name="categoryId" value="${categoryId}" />
-			                		<button class="btn btn-danger btn-xs" type="submit" name="product_delete">Delete</button>
+			                		<button class="btn btn-danger btn-xs" type="button" onclick="product_button_delete('${product.id}')">Delete</button>
 			                	</form>
 			                </td>
 			              </tr>      
@@ -99,10 +99,10 @@
 <script>
 
 // Delete category
-function product_button_delete(product_name, productId) {
+function product_button_delete(product_id) {
 	BootstrapDialog.confirm({
       title: 'WARNING',
-      message: 'Are you sure you want to delete <strong>' + productId + "</strong>?",
+      message: 'Are you sure you want to delete?',
       type: BootstrapDialog.TYPE_WARNING, // <-- Default value is BootstrapDialog.TYPE_PRIMARY
       closable: true, // <-- Default value is false
       draggable: false, // <-- Default value is false
@@ -113,7 +113,8 @@ function product_button_delete(product_name, productId) {
           // result will be true if button was click, while it will be false if users close the dialog directly.
           if(result) {
         	  // Delete category
-        	  window.location="<c:url value='/admin/product/delete/' />" + productId + "/" + product_name;
+        	  var frm_product_delete = "#frm_product_delete_" + product_id;
+    		$(frm_product_delete).submit();
           }else {
               // Do not execute any action and close the popup
           }

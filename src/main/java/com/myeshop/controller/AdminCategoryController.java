@@ -110,12 +110,13 @@ public class AdminCategoryController {
 		return	"redirect:/admin/category/list";
 	}
 	
-	@RequestMapping(value = "/delete/{categoryId}/{categoryName}", method = RequestMethod.GET)
-	public String delete(@PathVariable("categoryId") Long categoryId, @PathVariable("categoryName") String categoryName, RedirectAttributes redir) {
+	@RequestMapping(value = "/delete/{categoryId}", method = RequestMethod.POST)
+	public String delete(@PathVariable("categoryId") Long categoryId, @RequestParam("categoryName") String categoryName, RedirectAttributes redir) {
 		categoryService.deleteById(categoryId);
 		redir.addFlashAttribute("message", "Delete " + categoryName + " successfully.");
 		return	"redirect:/admin/category/list";
 	}
+	
 	
 	@RequestMapping(value = "/listProducts/{categoryId}", method = RequestMethod.GET)
 	public String listProducts(@PathVariable("categoryId") Long categoryId, Model model) {
