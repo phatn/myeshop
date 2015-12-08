@@ -49,7 +49,7 @@ public class AdminProductController {
 			return "editProduct";
 		}
 		
-		String rootDirectory = request.getSession().getServletContext().getRealPath("/");
+		String rootDirectory = request.getSession().getServletContext().getRealPath("//");
 		MultipartFile multipartFileImage = form.getMultipartFileImage();
 		if(multipartFileImage != null && !multipartFileImage.isEmpty()) {
 			String filePath = rootDirectory + "resources" + Constant.FILE_SEPERATOR + "images" + Constant.FILE_SEPERATOR  +"uploads" + Constant.FILE_SEPERATOR + "products" + Constant.FILE_SEPERATOR + form.getId() + ".png";
